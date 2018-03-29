@@ -87,7 +87,7 @@ namespace IdentityServer
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.Email
                     }
                 }
             };
@@ -105,7 +105,8 @@ namespace IdentityServer
                     Claims = new []
                     {
                         new Claim("name", "Alice"),
-                        new Claim("website", "https://alice.com")
+                        new Claim("website", "https://alice.com"),
+                        new Claim("email", "alice@alice.com")
                     }
                 },
                 new TestUser
@@ -116,7 +117,8 @@ namespace IdentityServer
                     Claims = new []
                     {
                         new Claim("name", "Bob"),
-                        new Claim("website", "https://bob.com")
+                        new Claim("website", "https://bob.com"),
+                        new Claim("email", "bob@bob.com")
                     }
                 }
             };
