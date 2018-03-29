@@ -42,6 +42,7 @@ namespace MvcClient
                     options.Scope.Clear();
                     options.Scope.Add("openid");
                     options.Scope.Add("email");
+                    options.Scope.Add("profile");
                 });
         }
 

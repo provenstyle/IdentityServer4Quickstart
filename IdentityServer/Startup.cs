@@ -22,6 +22,14 @@ namespace IdentityServer
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
                 .AddTestUsers(Config.GetUsers());
+
+            services.AddAuthentication()
+                .AddGoogle("Google", options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                    options.ClientId = "434483408261-55tc8n0cs4ff1fe21ea8df2o443v2iuc.apps.googleusercontent.com";
+                    options.ClientSecret = "3gcoTrEDPPJ0ukn_aYYT6PWo";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,10 +92,11 @@ namespace IdentityServer
                     // where to redirect to after logout
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
 
-                    AllowedScopes = new List<string>
+                    AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Email
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.Profile
                     }
                 }
             };
