@@ -84,19 +84,21 @@ namespace IdentityServer
                 {
                     ClientId = "mvc",
                     ClientName = "MVC Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-
-                    // where to redirect to after login
+                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                    AllowOfflineAccess = true,
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
-
-                    // where to redirect to after logout
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
 
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Email,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
                     }
                 }
             };

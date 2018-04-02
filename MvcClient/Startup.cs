@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,12 +33,17 @@ namespace MvcClient
                     options.Authority = "http://localhost:5000";
                     options.RequireHttpsMetadata = false;
                     options.ClientId = "mvc";
+                    options.ClientSecret = "secret";
+                    options.ResponseType = "code id_token";
                     options.SaveTokens = true;
+                    options.GetClaimsFromUserInfoEndpoint = true;
 
                     options.Scope.Clear();
                     options.Scope.Add("openid");
                     options.Scope.Add("email");
                     options.Scope.Add("profile");
+                    options.Scope.Add("api1");
+                    options.Scope.Add("offline_access");
                 });
         }
 
